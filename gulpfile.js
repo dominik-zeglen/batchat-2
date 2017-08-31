@@ -11,23 +11,15 @@ gulp.task("ts", function () {
     return browserify({
         basedir: '.',
         debug: true,
-        entries: ['./src/js/main.ts'],
+        entries: ['./src/public/js/main.ts'],
         cache: {},
         packageCache: {}
     })
         .plugin(tsify)
         .bundle()
         .pipe(source('main.js'))
-        .pipe(gulp.dest("./dist/js"));
+        .pipe(gulp.dest("./dist/public/js"));
 });
-
-// gulp.task('ts-app', function() {
-//     return gulp.src('./src/app.ts')
-//         .pipe(ts({
-//             declaration: true
-//         }))
-//         .pipe(gulp.dest('./dist/'));
-// });
 
 gulp.task('ts-app', function() {
     const tsResult = tsProject.src()
@@ -46,6 +38,7 @@ gulp.task('style watcher',function() {
 });
 
 gulp.task('ts watcher',function() {
+    gulp.watch('src/res/*.ts',['ts-app']);
+    gulp.watch('src/app.ts',['ts-app']);
     gulp.watch('src/public/js/*.ts',['ts']);
-    gulp.watch('src/*.ts',['ts-app']);
 });

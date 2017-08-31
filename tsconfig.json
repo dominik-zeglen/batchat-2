@@ -14,7 +14,7 @@
     "node_modules"
   ],
   "files": [
-    "./src/public/js/main.ts",
-    "./src/*.ts"
+    "./src/res/*.ts",
+    "./src/app.ts"
   ]
 }

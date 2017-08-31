@@ -1,10 +1,15 @@
-import * as io from 'socket.io';
+import * as io from 'socket.io-client';
 import * as $ from 'jquery';
 
-$(document).ready(e => {
+$(() => {
     let socket = io();
+    io.connect();
 
-    $('body').on('click', e => {
-        socket.emit('event', 'value');
+    socket.on('e', msg => {
+        console.log(msg);
     })
+
+    setInterval(() => {
+        socket.emit('e');
+    }, 5000);
 });
