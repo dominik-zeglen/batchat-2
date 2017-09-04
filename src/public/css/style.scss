@@ -1,0 +1,31 @@
+.chat-wrapper {
+  height: 500px;
+  overflow-y: auto;
+
+  #chat {
+    width: 1000px;
+    margin: auto;
+
+    .message {
+      margin-bottom: 10px;
+      overflow: hidden;
+
+      * {
+        padding: 10px;
+        border-radius: 4px;
+        max-width: 300px;
+      }
+      .server {
+        background: #adf;
+        margin: auto;
+      }
+      .me {
+        background: #adf;
+      }
+      .partner {
+        background: #e5f59a;
+        float: right;
+      }
+    }
+  }
+}

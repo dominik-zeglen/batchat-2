@@ -28,16 +28,19 @@ gulp.task('ts-app', function() {
 });
 
 gulp.task('style', function() {
-    gulp.src('./src/css/*.scss')
+    gulp.src('./src/public/css/style.scss')
         .pipe(sass().on('error', sass.logError))
-        .pipe(gulp.dest('./dist/css/'));
+        .pipe(gulp.dest('./dist/public/css/'));
 });
 
 gulp.task('style watcher',function() {
-    gulp.watch('src/css/*.scss',['styles']);
+    gulp.run('style');
+    gulp.watch('src/public/css/*.scss',['style']);
 });
 
 gulp.task('ts watcher',function() {
+    gulp.run('ts-app');
+    gulp.run('ts');
     gulp.watch('src/res/*.ts',['ts-app']);
     gulp.watch('src/app.ts',['ts-app']);
     gulp.watch('src/public/js/*.ts',['ts']);

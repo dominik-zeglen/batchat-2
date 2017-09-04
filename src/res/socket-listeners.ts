@@ -1,6 +1,10 @@
 export function printUuid(msg) {
-    this.socket.emit('e', this.uuid);
+    this.socket.emit('e', {
+        author: this.author,
+        content: this.content,
+        type: 'text'
+    });
 }
 export function printHellow(msg) {
-    this.socket.emit('e', 'hellow');
+    // this.socket.emit('e', 'hellow');
 }
