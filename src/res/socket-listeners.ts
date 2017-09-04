@@ -8,3 +8,12 @@ export function printUuid(msg) {
 export function printHellow(msg) {
     // this.socket.emit('e', 'hellow');
 }
+export function sendMessage(msg) {
+    if(msg.length) {
+        this.socket.emit('e', {
+            author: 'partner',
+            type: 'text',
+            content: msg
+        });
+    }
+}

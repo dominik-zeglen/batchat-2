@@ -43,6 +43,16 @@ export class Server {
                     author: 'server',
                     content: c.uuid
                 }));
+                sock.on('disconnect', msg => {
+                    this.queue.removeClient(c.uuid);
+                });
+                setInterval((function () {
+                    this.emit('e', {
+                        author: 'server',
+                        type: 'ad',
+                        content: 'Zapraszamy do naszego sklepu lol'
+                    });
+                }).bind(sock), 10000);
             });
         });
 
@@ -61,6 +71,25 @@ export class Server {
                 res.send(f.toString());
             });
         });
+
+        setInterval((function () {
+            let mc = this.queue.matchClients();
+            mc.map(r => {
+                r.forEach((c: Client, i) => {
+                    c.socket.emit('e', {
+                        author: 'server',
+                        type: 'text',
+                        content: 'found partner'
+                    });
+                    console.log('Setting up event listener between %id1 and %id2'
+                        .replace('%id1', c.uuid)
+                        .replace('%id2', r[(i + 1) % 2].uuid));
+                    console.log((i + 1) % 2);
+                    c.socket.on('msg', sl.sendMessage.bind(r[(i + 1) % 2]));
+                    this.queue.removeClient(c.uuid);
+                });
+            })
+        }).bind(this), 1000);
 
         return this;
     }

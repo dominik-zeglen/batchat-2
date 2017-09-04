@@ -7,12 +7,13 @@ $(() => {
     let socket = io();
     io.connect();
 
-    $('form').on('submit', e => {
+    $('#chat-controls').on('submit', e => {
         let t = $(e.currentTarget);
         e.preventDefault();
 
         let v = t.find('#v');
-        socket.emit();
+        socket.emit('msg', v.val());
+        v.val('');
     });
 
     let chat = new Chat(document.getElementById('chat'));
@@ -26,8 +27,4 @@ $(() => {
     });
     socket.on('e', chat.addMessage.bind(chat));
     socket.on('msg', chat.addMessage.bind(chat));
-
-    setInterval(() => {
-        socket.emit('e');
-    }, 1000);
 });

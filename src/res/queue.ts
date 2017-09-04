@@ -115,23 +115,30 @@ export class Queue {
         })
     }
 
-    matchClients() {
-        let ret;
+    matchClients() :Array<Array<Client>> {
+        let ret = [];
         this.clients.forEach((s, i) => {
             s.forEach((r, j) => {
                 r.forEach((c, k) => {
                     (c.getPreferences().sex == 2 ? [0, 1] : [c.getPreferences().partnerSex]).forEach(partner_sex => {
                         this.clients[partner_sex][c.getPreferences().partnerRegion].forEach(p => {
                             if (p.getPreferences().partnerRegion == c.getClient().region &&
-                                p.getPreferences().partnerSex == c.getClient().sex) {
+                                p.getPreferences().partnerSex == c.getClient().sex &&
+                                p.getClient().uuid != c.getClient().uuid) {
                                 ret.push([c.getClient(), p.getClient()]);
-
+                            } else {
+                                p.tick();
                             }
                         })
                     });
                 });
             });
         });
+        let ret2 = _.chunk(this.getUnmatchable()).filter(c => {
+            return c.length == 2;
+        });
+
+        return ret.concat(ret2);
     }
 }
 
