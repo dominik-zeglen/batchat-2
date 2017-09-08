@@ -1,5 +1,4 @@
 import * as _ from 'lodash';
-import * as sl from './socket-listeners';
 import {Client} from './client';
 
 class QueuedClient {
@@ -88,7 +87,7 @@ export class Queue {
             s.forEach((r, j) => {
                 r.forEach((c, k) => {
                     if (c.getClient().uuid == u) {
-                        delete this.clients[i][j][k];
+                        this.clients[i][j].splice(k, 1);
                     }
                 })
             });
@@ -101,7 +100,7 @@ export class Queue {
             s.forEach((r, j) => {
                 r.forEach((c, k) => {
                     if (_.includes(u, c.getClient().uuid)) {
-                        delete this.clients[i][j][k];
+                        this.clients[i][j].splice(k, 1);
                     }
                 })
             });
@@ -109,7 +108,7 @@ export class Queue {
         return this;
     }
 
-    getUnmatchable() :Array<Client> {
+    getUnmatchable() :Array<QueuedClient> {
         return this.filterClients(c => {
             return c.getTicks() >= this.maxWaitTime;
         })
@@ -125,7 +124,9 @@ export class Queue {
                             if (p.getPreferences().partnerRegion == c.getClient().region &&
                                 p.getPreferences().partnerSex == c.getClient().sex &&
                                 p.getClient().uuid != c.getClient().uuid) {
-                                ret.push([c.getClient(), p.getClient()]);
+                                if(p.getClient().uuid != c.getClient().uuid) {
+                                    ret.push([c.getClient(), p.getClient()]);
+                                }
                             } else {
                                 p.tick();
                             }
@@ -134,7 +135,9 @@ export class Queue {
                 });
             });
         });
-        let ret2 = _.chunk(this.getUnmatchable()).filter(c => {
+        let ret2 = _.chunk(this.getUnmatchable().map(c => {
+            return c.getClient();
+        }), 2).filter(c => {
             return c.length == 2;
         });
 

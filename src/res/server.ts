@@ -37,12 +37,6 @@ export class Server {
             sock.on('join-queue', prefs => {
                 let c = new Client(sock, prefs);
                 this.queue.addClient(c);
-
-                sock.on('e', sl.printUuid.bind({
-                    socket: c.socket,
-                    author: 'server',
-                    content: c.uuid
-                }));
                 sock.on('disconnect', msg => {
                     this.queue.removeClient(c.uuid);
                 });
@@ -72,24 +66,41 @@ export class Server {
             });
         });
 
-        setInterval((function () {
+        setInterval((() => {
             let mc = this.queue.matchClients();
+            console.log(this.queue.matchClients());
             mc.map(r => {
+                let roomID = uuid.v1();
                 r.forEach((c: Client, i) => {
-                    c.socket.emit('e', {
-                        author: 'server',
-                        type: 'text',
-                        content: 'found partner'
-                    });
-                    console.log('Setting up event listener between %id1 and %id2'
-                        .replace('%id1', c.uuid)
-                        .replace('%id2', r[(i + 1) % 2].uuid));
-                    console.log((i + 1) % 2);
-                    c.socket.on('msg', sl.sendMessage.bind(r[(i + 1) % 2]));
+                    c.socket.join(roomID);
+                    c.socket.on('msg', sl.sendMessage.bind({
+                        roomID: roomID,
+                        socket: c.socket
+                    }));
+                    c.socket.on('img', sl.sendImage.bind({
+                        roomID: roomID,
+                        socket: c.socket
+                    }));
+                    c.socket.on('disconnect', sl.disconnect.bind({
+                        roomID: roomID,
+                        socket: c.socket
+                    }));
+                    c.socket.on('addToQueue', sl.addToQueue.bind({
+                        roomID: roomID,
+                        client: c,
+                        queue: this.queue
+                    }));
+                    setTimeout((function() {
+                        this.emit('e', {
+                            author: 'server',
+                            type: 'event',
+                            content: 'found partner'
+                        });
+                    }).bind(c.socket), 500);
                     this.queue.removeClient(c.uuid);
                 });
             })
-        }).bind(this), 1000);
+        }), 1000);
 
         return this;
     }

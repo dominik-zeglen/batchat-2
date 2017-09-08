@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Batchat</title>
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/style.css" id="css">
     <script src="/public/js/main.js"></script>
 </head>
 <body>
 
-<div class="chat-wrapper">
+<div class="container">
     <div id="chat"></div>
+    <form id="chat-controls">
+        <div class="col-sm-10">
+            <input id="v" autocomplete="off">
+        </div>
+        <div class="col-sm-1 col-6">
+            <button id="img"><span class="fa fa-image"></span></button>
+            <input type="file" accept="image/*" id="u">
+        </div>
+        <div class="col-sm-1 col-6">
+            <button id="sub"><span class="fa fa-arrow-right"></span></button>
+        </div>
+    </form>
 </div>
-<form id="chat-controls">
-    <input id="v">
-    <input type="submit">
-</form>
 
 </body>
 </html>

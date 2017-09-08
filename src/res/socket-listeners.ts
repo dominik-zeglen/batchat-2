@@ -10,10 +10,32 @@ export function printHellow(msg) {
 }
 export function sendMessage(msg) {
     if(msg.length) {
-        this.socket.emit('e', {
+        this.socket.to(this.roomID).emit('e', {
             author: 'partner',
             type: 'text',
             content: msg
         });
     }
+}
+export function sendImage(msg) {
+    if(msg.length) {
+        this.socket.to(this.roomID).emit('e', {
+            author: 'partner',
+            type: 'image',
+            content: msg
+        });
+    }
+}
+
+export function disconnect(msg) {
+    this.socket.to(this.roomID).emit('e', {
+        author: 'server',
+        type: 'event',
+        content: 'partner_disconnected'
+    });
+}
+
+export function addToQueue(msg) {
+    this.client.socket.leave(this.roomID);
+    this.queue.addClient(this.client);
 }

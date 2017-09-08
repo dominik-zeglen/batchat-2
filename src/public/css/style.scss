@@ -1,31 +1,71 @@
-.chat-wrapper {
-  height: 500px;
+$yellow: #FEEF07;
+$lightgray: #4B4B4B;
+$gray: #272727;
+
+@import 'bootstrap.min';
+@import 'bootstrap-theme';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+
+body {
+  background: #000 !important;
+}
+#chat {
+  height: calc(100vh - 37px);
   overflow-y: auto;
+  margin: 0 auto;
+  padding: 20px 50px;
+  background: $lightgray;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
-  #chat {
-    width: 1000px;
-    margin: auto;
+  .message {
+    margin-bottom: 10px;
+    overflow: hidden;
 
-    .message {
-      margin-bottom: 10px;
-      overflow: hidden;
-
-      * {
-        padding: 10px;
-        border-radius: 4px;
-        max-width: 300px;
-      }
-      .server {
-        background: #adf;
-        margin: auto;
-      }
-      .me {
-        background: #adf;
-      }
-      .partner {
-        background: #e5f59a;
-        float: right;
-      }
+    & > * {
+      padding: 5px 10px;
+      border-radius: 2px;
+      max-width: 450px;
+      word-break: break-all;
     }
+    .server {
+      color: #fff;
+      font-size: .8rem;
+      text-align: center;
+      padding: 0px;
+      margin: auto;
+    }
+    .me {
+      background: #adf;
+      float: left;
+    }
+    .partner {
+      background: #e5f59a;
+      float: right;
+    }
+    img {
+      object-fit: contain;
+      width: 100%;
+    }
+  }
+}
+
+#chat-controls {
+  @extend .row;
+  margin: 0 !important;
+
+  div[class^="col-"] {
+    padding: 0;
+  }
+  #v {
+    @extend .form-control;
+  }
+  #u {
+    display: none;
+  }
+  button {
+    @extend .btn;
+    @extend .btn-primary;
   }
 }

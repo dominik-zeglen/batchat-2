@@ -1,4 +1,5 @@
 import {h, createProjector} from 'maquette';
+import {emojizer} from './emojizer';
 
 interface Message {
     author: string;
@@ -18,15 +19,18 @@ export class Chat {
     }
 
     renderChat() {
-        return h('div.chat-wrapper', this.messages.map((m, i) => {
+        return h('div#chat-container', this.messages.map((m, i) => {
             return h('div.message', {key: i}, [
-                h('div.author'.replace('author', m.author), m.content)
+                h('div.author'.replace('author', m.author), m.type == 'image' ? h('img', {src: m.content}) : m.content)
             ]);
         }));
     }
 
     addMessage(msg) {
-        this.messages.push(msg);
+        this.messages.push(emojizer(msg));
         this.projector.scheduleRender();
+        setTimeout((() => {
+            this.selector.scrollTop = this.selector.scrollHeight + 100;
+        }), 100);
     }
 }
