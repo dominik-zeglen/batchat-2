@@ -73,12 +73,6 @@ export class Queue {
 
     addClient(c :Client) :Queue {
         this.clients[c.prefs.sex][c.prefs.region].push(new QueuedClient(c));
-
-        // c.socket.removeListener('e', sl.printUuid);
-        // c.socket.on('e', e => {
-        //     c.socket.emit('e', 'hellow');
-        // });
-
         return this;
     }
 
@@ -126,6 +120,8 @@ export class Queue {
                                 p.getClient().uuid != c.getClient().uuid) {
                                 if(p.getClient().uuid != c.getClient().uuid) {
                                     ret.push([c.getClient(), p.getClient()]);
+                                    this.removeClient(c.getClient().uuid);
+                                    this.removeClient(p.getClient().uuid);
                                 }
                             } else {
                                 p.tick();

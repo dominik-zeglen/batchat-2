@@ -1,44 +1,36 @@
-import * as express from 'express';
-import * as uuid from 'node-uuid';
-import * as io from 'socket.io';
-import * as http_module from 'http';
-import * as fs from 'fs';
-import * as _ from 'lodash';
-import * as cookieParser from 'cookie-parser';
-import * as bodyParser from 'body-parser';
-import * as sl from './socket-listeners';
-import {Room} from './room';
-import {Client} from './client';
-import {RoomManager} from './roommanager';
-import {Queue} from './queue';
-
-export class Server {
-    app: express.Application;
-    http: any;
-    settings: Array<any>;
-    rooms: RoomManager;
-    queue: Queue;
-    socket: any;
-
-    constructor(port: number) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express = require("express");
+var uuid = require("node-uuid");
+var io = require("socket.io");
+var http_module = require("http");
+var fs = require("fs");
+var cookieParser = require("cookie-parser");
+var bodyParser = require("body-parser");
+var sl = require("./socket-listeners");
+var client_1 = require("./client");
+var roommanager_1 = require("./roommanager");
+var queue_1 = require("./queue");
+var Server = /** @class */ (function () {
+    function Server(port) {
         this.app = express();
         this.http = new http_module.Server(this.app);
         this.settings = [];
         this.settings['port'] = port;
-        this.rooms = new RoomManager();
+        this.rooms = new roommanager_1.RoomManager();
         this.socket = io(this.http);
-        this.queue = new Queue();
+        this.queue = new queue_1.Queue();
     }
-
-    init(): Server {
+    Server.prototype.init = function () {
+        var _this = this;
         this.app.use(cookieParser());
         this.app.use(bodyParser());
-        this.socket.on('connection', sock => {
-            sock.on('join-queue', prefs => {
-                let c = new Client(sock, prefs);
-                this.queue.addClient(c);
-                sock.on('disconnect', msg => {
-                    this.queue.removeClient(c.uuid);
+        this.socket.on('connection', function (sock) {
+            sock.on('join-queue', function (prefs) {
+                var c = new client_1.Client(sock, prefs);
+                _this.queue.addClient(c);
+                sock.on('disconnect', function (msg) {
+                    _this.queue.removeClient(c.uuid);
                 });
                 setInterval((function () {
                     this.emit('e', {
@@ -49,28 +41,26 @@ export class Server {
                 }).bind(sock), 10000);
             });
         });
-
         this.app.use('/public/', express.static('./public'));
-        this.app.get('/', (req: express.Request, res: express.Response) => {
-            fs.readFile('./views/index.html', (e, f) => {
-                res.send(f.toString().replace('%rooms%', JSON.stringify(this.rooms)));
+        this.app.get('/', function (req, res) {
+            fs.readFile('./views/index.html', function (e, f) {
+                res.send(f.toString().replace('%rooms%', JSON.stringify(_this.rooms)));
             });
         });
-        this.app.post('/chat', (req: express.Request, res: express.Response) => {
+        this.app.post('/chat', function (req, res) {
             res.cookie('sex', req.body.sex)
                 .cookie('partnerSex', req.body.partnerSex)
                 .cookie('region', req.body.region)
                 .cookie('partnerRegion', req.body.partnerRegion);
-            fs.readFile('./views/chat.html', (e, f) => {
+            fs.readFile('./views/chat.html', function (e, f) {
                 res.send(f.toString());
             });
         });
-
-        setInterval((() => {
-            let mc = this.queue.matchClients();
-            mc.map(r => {
-                let roomID = uuid.v1();
-                r.forEach((c: Client, i) => {
+        setInterval((function () {
+            var mc = _this.queue.matchClients();
+            mc.map(function (r) {
+                var roomID = uuid.v1();
+                r.forEach(function (c, i) {
                     c.socket.join(roomID);
                     c.socket.on('msg', sl.sendMessage.bind({
                         roomID: roomID,
@@ -87,9 +77,9 @@ export class Server {
                     c.socket.on('addToQueue', sl.addToQueue.bind({
                         roomID: roomID,
                         client: c,
-                        queue: this.queue
+                        queue: _this.queue
                     }));
-                    setTimeout((function() {
+                    setTimeout((function () {
                         this.emit('e', {
                             author: 'server',
                             type: 'event',
@@ -97,15 +87,14 @@ export class Server {
                         });
                     }).bind(c.socket), 500);
                 });
-            })
+            });
         }), 1000);
-
         return this;
-    }
-
-    listen() {
+    };
+    Server.prototype.listen = function () {
         this.http.listen(this.settings['port']);
-    }
-}
-
-export default Server;
+    };
+    return Server;
+}());
+exports.Server = Server;
+exports.default = Server;

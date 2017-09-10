@@ -1,7 +1,9 @@
 import * as io from 'socket.io-client';
 import * as $ from 'jquery';
 import * as cookie from 'js-cookie';
-import {Chat} from './chat';
+import {Chat} from './components/chat';
+import {Nav} from './components/main-nav';
+import {Footer} from './components/main-footer';
 
 $(() => {
     if(document.getElementById('chat') != null) {
