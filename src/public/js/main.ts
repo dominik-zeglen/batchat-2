@@ -2,8 +2,8 @@ import * as io from 'socket.io-client';
 import * as $ from 'jquery';
 import * as cookie from 'js-cookie';
 import {Chat} from './components/chat';
-import {Nav} from './components/main-nav';
-import {Footer} from './components/main-footer';
+import {MainNav} from './components/main-nav';
+import {MainFooter} from './components/main-footer';
 
 $(() => {
     if(document.getElementById('chat') != null) {
@@ -90,4 +90,10 @@ $(() => {
         });
         socket.on('msg', chat.addMessage);
     }
+
+    let nav = new MainNav(document.getElementById('main-nav'));
+    nav.projector.append(nav.selector, nav.render.bind(nav));
+    setInterval(() => {
+        nav.update();
+    }, 1000);
 });

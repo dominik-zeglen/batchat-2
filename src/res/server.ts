@@ -19,6 +19,7 @@ export class Server {
     rooms: RoomManager;
     queue: Queue;
     socket: any;
+    clientCounter :number;
 
     constructor(port: number) {
         this.app = express();
@@ -28,6 +29,7 @@ export class Server {
         this.rooms = new RoomManager();
         this.socket = io(this.http);
         this.queue = new Queue();
+        this.clientCounter = 0;
     }
 
     init(): Server {
@@ -35,10 +37,12 @@ export class Server {
         this.app.use(bodyParser());
         this.socket.on('connection', sock => {
             sock.on('join-queue', prefs => {
+                this.clientCounter += 1;
                 let c = new Client(sock, prefs);
                 this.queue.addClient(c);
                 sock.on('disconnect', msg => {
                     this.queue.removeClient(c.uuid);
+                    this.clientCounter -= 1;
                 });
                 setInterval((function () {
                     this.emit('e', {
@@ -64,6 +68,9 @@ export class Server {
             fs.readFile('./views/chat.html', (e, f) => {
                 res.send(f.toString());
             });
+        });
+        this.app.get('/api/clients/', (req :express.Request, res :express.Response) => {
+            res.send(JSON.stringify({activeClients: this.clientCounter}));
         });
 
         setInterval((() => {
