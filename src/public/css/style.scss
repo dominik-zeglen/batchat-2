@@ -4,13 +4,40 @@ $gray: #272727;
 
 @import 'bootstrap.min';
 @import 'bootstrap-theme';
+@import 'utility';
 @import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
 
 body {
-  background: #000 !important;
+  background: $gray !important;
 }
+
+#main-nav, #main-footer {
+  height: 80px;
+  font: 300 14px 'Open Sans Condensed', sans-serif;
+  background: #000;
+  width: 100%;
+}
+#main-nav {
+  border-bottom: 2px $yellow solid;
+  color: $yellow;
+}
+#main-footer {
+  position: absolute;
+  bottom: 0;
+  border-top: 2px $yellow solid;
+}
+main {
+  height: calc(100vh - 160px);
+  min-height: 600px;
+
+  .container {
+    height: 600px;
+    @extend .center-vertical;
+  }
+}
+
 #chat {
-  height: calc(100vh - 37px);
+  height: calc(100vh - 80px - 37px);
   overflow-y: auto;
   margin: 0 auto;
   padding: 20px 50px;
@@ -33,7 +60,7 @@ body {
       color: #fff;
       font-size: .8rem;
       text-align: center;
-      padding: 0px;
+      padding: 0;
       margin: auto;
     }
     .me {
@@ -69,3 +96,5 @@ body {
     @extend .btn-primary;
   }
 }
+
+@import 'rwd/rwd_640_320';

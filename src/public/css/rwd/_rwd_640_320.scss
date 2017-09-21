@@ -1,0 +1,13 @@
+@media all and (max-width: 768px) {
+  #chat {
+    padding: 15px;
+    height: calc(100vh - 80px - 90px);
+  }
+  #chat-controls {
+    margin: 0 -15px !important;
+
+    button, input {
+      height: 45px;
+    }
+  }
+}

@@ -1,0 +1,67 @@
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.center-vertical {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.wrapper {
+  width: 1200px;
+}
+
+.background {
+  &-gray {
+    background: $gray;
+  }
+  &-lightgray {
+    background: $lightgray;
+  }
+}
+
+.fit {
+  &-width {
+    width: 100%;
+  }
+  &-height {
+    height: 100%;
+  }
+}
+
+.splitter {
+  &-left, &-right {
+    height: 100%;
+
+    &:before {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 1px;
+      top: 0;
+      background: linear-gradient(to top, transparent 20%, $yellow 50%, transparent 80%);
+    }
+  }
+  &-left {
+    &:before {
+      right: 0;
+    }
+  }
+  &-right {
+    &:before {
+      left: 0;
+    }
+  }
+}
+
+@media all and (max-width: 1200px) {
+  .wrapper {
+    width: 100%;
+    padding: 0 15px;
+  }
+}
