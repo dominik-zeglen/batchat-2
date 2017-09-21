@@ -20,6 +20,7 @@ var Server = /** @class */ (function () {
         this.rooms = new roommanager_1.RoomManager();
         this.socket = io(this.http);
         this.queue = new queue_1.Queue();
+        this.clientCounter = 0;
     }
     Server.prototype.init = function () {
         var _this = this;
@@ -27,10 +28,12 @@ var Server = /** @class */ (function () {
         this.app.use(bodyParser());
         this.socket.on('connection', function (sock) {
             sock.on('join-queue', function (prefs) {
+                _this.clientCounter += 1;
                 var c = new client_1.Client(sock, prefs);
                 _this.queue.addClient(c);
                 sock.on('disconnect', function (msg) {
                     _this.queue.removeClient(c.uuid);
+                    _this.clientCounter -= 1;
                 });
                 setInterval((function () {
                     this.emit('e', {
@@ -55,6 +58,9 @@ var Server = /** @class */ (function () {
             fs.readFile('./views/chat.html', function (e, f) {
                 res.send(f.toString());
             });
+        });
+        this.app.get('/api/clients/', function (req, res) {
+            res.send(JSON.stringify({ activeClients: _this.clientCounter }));
         });
         setInterval((function () {
             var mc = _this.queue.matchClients();

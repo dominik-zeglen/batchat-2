@@ -36,6 +36,7 @@ gulp.task('style', function() {
 gulp.task('style watcher',function() {
     gulp.run('style');
     gulp.watch('src/public/css/*.scss',['style']);
+    gulp.watch('src/public/css/rwd/*.scss',['style']);
 });
 
 gulp.task('ts watcher',function() {
@@ -44,4 +45,5 @@ gulp.task('ts watcher',function() {
     gulp.watch('src/res/*.ts',['ts-app']);
     gulp.watch('src/app.ts',['ts-app']);
     gulp.watch('src/public/js/*.ts',['ts']);
+    gulp.watch('src/public/js/*/*.ts',['ts']);
 });

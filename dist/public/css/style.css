@@ -6196,11 +6196,82 @@ a.text-dark:focus, a.text-dark:hover {
   border-radius: 0;
   width: 100%; }
 
+.container {
+  max-width: 1250px; }
+
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+.center-vertical, main .container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); }
+
+.wrapper {
+  width: 1200px; }
+
+.background-gray {
+  background: #272727; }
+
+.background-lightgray {
+  background: #4B4B4B; }
+
+.fit-width {
+  width: 100%; }
+
+.fit-height {
+  height: 100%; }
+
+.splitter-left, .splitter-right {
+  height: 100%; }
+  .splitter-left:before, .splitter-right:before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    top: 0;
+    background: linear-gradient(to top, transparent 20%, #FEEF07 50%, transparent 80%); }
+
+.splitter-left:before {
+  right: 0; }
+
+.splitter-right:before {
+  left: 0; }
+
+@media all and (max-width: 1200px) {
+  .wrapper {
+    width: 100%;
+    padding: 0 15px; } }
+
 body {
-  background: #000 !important; }
+  background: #272727 !important; }
+
+#main-nav, #main-footer {
+  height: 80px;
+  font: 300 14px 'Open Sans Condensed', sans-serif;
+  background: #000;
+  width: 100%; }
+
+#main-nav {
+  border-bottom: 2px #FEEF07 solid;
+  color: #FEEF07; }
+
+#main-footer {
+  position: absolute;
+  bottom: 0;
+  border-top: 2px #FEEF07 solid; }
+
+main {
+  height: calc(100vh - 160px);
+  min-height: 600px; }
+  main .container {
+    height: 600px; }
 
 #chat {
-  height: calc(100vh - 37px);
+  height: calc(100vh - 80px - 37px);
   overflow-y: auto;
   margin: 0 auto;
   padding: 20px 50px;
@@ -6219,7 +6290,7 @@ body {
       color: #fff;
       font-size: .8rem;
       text-align: center;
-      padding: 0px;
+      padding: 0;
       margin: auto; }
     #chat .message .me {
       background: #adf;
@@ -6237,3 +6308,12 @@ body {
     padding: 0; }
   #chat-controls #u {
     display: none; }
+
+@media all and (max-width: 768px) {
+  #chat {
+    padding: 15px;
+    height: calc(100vh - 80px - 90px); }
+  #chat-controls {
+    margin: 0 -15px !important; }
+    #chat-controls button, #chat-controls input {
+      height: 45px; } }

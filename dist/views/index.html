@@ -4,31 +4,71 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="/public/js/main.js"></script>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="/dist/public/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
 <nav id="main-nav"></nav>
-<form method="POST" action="/chat">
-    <select name="sex">
-        <option value="0">male</option>
-        <option value="1">female</option>
-    </select>
-    <select name="partnerSex">
-        <option value="0">male</option>
-        <option value="1">female</option>
-        <option value="2">no matter lol</option>
-    </select>
-    <select name="region">
-        <option value="0">r1</option>
-        <option value="1">r2</option>
-    </select>
-    <select name="partnerRegion">
-        <option value="0">r1</option>
-        <option value="1">r2</option>
-    </select>
-    <input type="submit">
-</form>
-<footer id="footer-main"></footer>
+<main>
+    <div class="container">
+        <div class="row fit-height">
+            <div class="col-md-2">
+                <img data-src="/public/img/adv1.png">
+            </div>
+            <div class="col-md-8 background-lightgray fit-height">
+                <div class="row fit-height">
+                    <div class="col-sm-6 splitter-left">
+
+                    </div>
+                    <div class="col-sm-6 splitter-right">
+                        <form method="POST" action="/chat" class="d-block center-vertical">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <select name="sex" class="fit-width">
+                                        <option value="0">male</option>
+                                        <option value="1">female</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select name="partnerSex" class="fit-width">
+                                        <option value="0">male</option>
+                                        <option value="1">female</option>
+                                        <option value="2">no matter lol</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <select name="region" class="fit-width">
+                                        <option value="0">r1</option>
+                                        <option value="1">r2</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select name="partnerRegion" class="fit-width">
+                                        <option value="0">r1</option>
+                                        <option value="1">r2</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 m-auto">
+                                    <input type="submit" class="fit-width btn btn-primary">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <img data-src="/public/img/adv1.png">
+            </div>
+        </div>
+    </div>
+</main>
+<nav id="main-footer"></nav>
 
 </body>
 </html>
