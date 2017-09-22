@@ -1,0 +1,56 @@
+.select {
+  cursor: pointer;
+  background: #fff;
+  height: 25px;
+  z-index: 1000 !important;
+  position: relative;
+
+  .select-label {
+    line-height: 25px;
+    padding: 0 15px;
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      background: #000;
+    }
+    &:before {
+      right: 25px;
+      top: 2.5px;
+      height: 20px;
+      width: 1px;
+    }
+    &:after {
+      width: 0;
+      height: 0;
+      top: 10px;
+      right: 9px;
+      border-left: 3px #fff solid;
+      border-right: 3px #fff solid;
+      border-top: 5px #000 solid;
+    }
+  }
+  ul {
+    border-top: 1px $lightgray solid;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: 500ms;
+    list-style: none;
+
+    &.expanded {
+      max-height: 1000px;
+    }
+
+    li {
+      height: 25px;
+      background: #fff;
+      line-height: 25px;
+      padding: 0 15px;
+
+      span {
+        display: none;
+      }
+    }
+  }
+}

@@ -4,7 +4,8 @@
  * Copyright 2011-2017 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Raleway");
 @media print {
   *, ::after, ::before {
     text-shadow: none !important;
@@ -6181,7 +6182,7 @@ a.text-dark:focus, a.text-dark:hover {
   border: none;
   border-radius: 0;
   cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Raleway', sans-serif;
   width: 100%; }
   .btn:focus, #chat-controls button:focus {
     outline: none; }
@@ -6198,6 +6199,10 @@ a.text-dark:focus, a.text-dark:hover {
 
 .container {
   max-width: 1250px; }
+
+h1 {
+  color: #fff;
+  font: 300 28px 'Open Sans Condensed', sans-serif; }
 
 .left {
   float: left; }
@@ -6241,13 +6246,63 @@ a.text-dark:focus, a.text-dark:hover {
 .splitter-right:before {
   left: 0; }
 
+.font-condensed {
+  font-family: 'Open Sans Condensed', sans-serif; }
+
+.font-white {
+  color: #fff; }
+
 @media all and (max-width: 1200px) {
   .wrapper {
     width: 100%;
     padding: 0 15px; } }
 
+.select {
+  cursor: pointer;
+  background: #fff;
+  height: 25px;
+  z-index: 1000 !important;
+  position: relative; }
+  .select .select-label {
+    line-height: 25px;
+    padding: 0 15px; }
+    .select .select-label:before, .select .select-label:after {
+      content: '';
+      position: absolute;
+      background: #000; }
+    .select .select-label:before {
+      right: 25px;
+      top: 2.5px;
+      height: 20px;
+      width: 1px; }
+    .select .select-label:after {
+      width: 0;
+      height: 0;
+      top: 10px;
+      right: 9px;
+      border-left: 3px #fff solid;
+      border-right: 3px #fff solid;
+      border-top: 5px #000 solid; }
+  .select ul {
+    border-top: 1px #4B4B4B solid;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    transition: 500ms;
+    list-style: none; }
+    .select ul.expanded {
+      max-height: 1000px; }
+    .select ul li {
+      height: 25px;
+      background: #fff;
+      line-height: 25px;
+      padding: 0 15px; }
+      .select ul li span {
+        display: none; }
+
 body {
-  background: #272727 !important; }
+  background: #272727 !important;
+  font: 400 14px 'Raleway', sans-serif; }
 
 #main-nav, #main-footer {
   height: 80px;
@@ -6269,6 +6324,8 @@ main {
   min-height: 600px; }
   main .container {
     height: 600px; }
+    main .container .select {
+      margin-bottom: 15px; }
 
 #chat {
   height: calc(100vh - 80px - 37px);

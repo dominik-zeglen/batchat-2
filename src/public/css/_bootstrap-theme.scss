@@ -2,7 +2,7 @@
   border: none;
   border-radius: 0;
   cursor: pointer;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Raleway', sans-serif;
   width: 100%;
   &:focus {
     outline: none;
@@ -25,4 +25,9 @@
 
 .container {
   max-width: 1250px;
+}
+
+h1 {
+  color: #fff;
+  font: 300 28px 'Open Sans Condensed', sans-serif;
 }

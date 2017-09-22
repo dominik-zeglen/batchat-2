@@ -4,6 +4,7 @@ import * as cookie from 'js-cookie';
 import {Chat} from './components/chat';
 import {MainNav} from './components/main-nav';
 import {MainFooter} from './components/main-footer';
+import {StaticSelect} from "./components/static-select";
 
 $(() => {
     if(document.getElementById('chat') != null) {
@@ -96,4 +97,20 @@ $(() => {
     setInterval(() => {
         nav.update();
     }, 1000);
+
+    $.fn.extend({
+        StaticSelect: function() {
+            return this.each(function() {
+                return new StaticSelect.StatSelect($(this));
+            });
+        }
+    });
+
+    (<any>$('.select')).StaticSelect();
+
+    $('img').each((i, t) => {
+        if($(t).attr('data-src')) {
+            $(t).attr('src', $(t).attr('data-src'));
+        }
+    });
 });

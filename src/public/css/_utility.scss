@@ -59,6 +59,15 @@
   }
 }
 
+.font {
+  &-condensed {
+    font-family: 'Open Sans Condensed', sans-serif;
+  }
+  &-white {
+    color: #fff;
+  }
+}
+
 @media all and (max-width: 1200px) {
   .wrapper {
     width: 100%;

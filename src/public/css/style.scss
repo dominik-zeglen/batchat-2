@@ -5,10 +5,14 @@ $gray: #272727;
 @import 'bootstrap.min';
 @import 'bootstrap-theme';
 @import 'utility';
-@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css';
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Raleway');
+
+@import 'select';
 
 body {
   background: $gray !important;
+  font: 400 14px 'Raleway', sans-serif;
 }
 
 #main-nav, #main-footer {
@@ -33,6 +37,10 @@ main {
   .container {
     height: 600px;
     @extend .center-vertical;
+
+    .select {
+      margin-bottom: 15px;
+    }
   }
 }
 
