@@ -5,7 +5,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
-@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Raleway");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Raleway:300,300i,400");
 @media print {
   *, ::after, ::before {
     text-shadow: none !important;
@@ -6252,6 +6252,9 @@ h1 {
 .font-white {
   color: #fff; }
 
+.font-light {
+  font-weight: 300; }
+
 @media all and (max-width: 1200px) {
   .wrapper {
     width: 100%;
@@ -6261,7 +6264,6 @@ h1 {
   cursor: pointer;
   background: #fff;
   height: 25px;
-  z-index: 1000 !important;
   position: relative; }
   .select .select-label {
     line-height: 25px;
@@ -6282,7 +6284,8 @@ h1 {
       right: 9px;
       border-left: 3px #fff solid;
       border-right: 3px #fff solid;
-      border-top: 5px #000 solid; }
+      border-top: 5px #000 solid;
+      border-bottom: none; }
   .select ul {
     border-top: 1px #4B4B4B solid;
     max-height: 0;
@@ -6296,9 +6299,16 @@ h1 {
       height: 25px;
       background: #fff;
       line-height: 25px;
-      padding: 0 15px; }
+      padding: 0 15px;
+      margin-top: -1px; }
+      .select ul li:hover {
+        background: #f9f9f9; }
       .select ul li span {
         display: none; }
+  .select ~ label {
+    display: block;
+    color: #fff;
+    font: 300 14px 'Open Sans Condensed', sans-serif; }
 
 body {
   background: #272727 !important;

@@ -66,6 +66,9 @@
   &-white {
     color: #fff;
   }
+  &-light {
+    font-weight: 300;
+  }
 }
 
 @media all and (max-width: 1200px) {

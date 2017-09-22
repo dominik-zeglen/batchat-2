@@ -5,6 +5,7 @@ import {Chat} from './components/chat';
 import {MainNav} from './components/main-nav';
 import {MainFooter} from './components/main-footer';
 import {StaticSelect} from "./components/static-select";
+import {isNumber} from "util";
 
 $(() => {
     if(document.getElementById('chat') != null) {
@@ -106,7 +107,14 @@ $(() => {
         }
     });
 
-    (<any>$('.select')).StaticSelect();
+    $('.select').each((i, t) => {
+        (<any>$(t)).StaticSelect();
+        if(isNumber($(t).css('z-index'))) {
+            $(t).css('z-index', (parseInt($(t).css('z-index')) + i));
+        } else {
+            $(t).css('z-index', 100 - i);
+        }
+    });
 
     $('img').each((i, t) => {
         if($(t).attr('data-src')) {

@@ -2,7 +2,7 @@
   cursor: pointer;
   background: #fff;
   height: 25px;
-  z-index: 1000 !important;
+  //z-index: 1000 !important;
   position: relative;
 
   .select-label {
@@ -28,6 +28,7 @@
       border-left: 3px #fff solid;
       border-right: 3px #fff solid;
       border-top: 5px #000 solid;
+      border-bottom: none;
     }
   }
   ul {
@@ -47,10 +48,20 @@
       background: #fff;
       line-height: 25px;
       padding: 0 15px;
+      margin-top: -1px;
 
+      &:hover {
+        background: $darkwhite;
+      }
       span {
         display: none;
       }
     }
+  }
+
+  & ~ label {
+    display: block;
+    color: #fff;
+    font: 300 14px 'Open Sans Condensed', sans-serif;
   }
 }

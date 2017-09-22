@@ -20,10 +20,15 @@
             <div class="col-md-8 background-lightgray fit-height">
                 <div class="row fit-height">
                     <div class="col-sm-6 splitter-left">
-                        <div class="center-vertical font-condensed font-white">
+                        <div class="center-vertical font-light font-white">
                             <h1>Pogadaj se</h1>
                             <div>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                                mollit anim id est laborum.
                             </div>
                             <ul class="mt-2">
                                 <li>Okresl swoje preferencje</li>
@@ -36,12 +41,15 @@
                         <form method="POST" action="/chat" class="d-block center-vertical">
                             <div class="row">
                                 <div class="col-sm-6">
+                                    <label class="font-white font-condensed" data-for="sex">
+                                        Twoja plec:
+                                    </label>
                                     <div class="select">
                                         <div class="select-label">
                                             <div>male</div>
                                             <input type="hidden" value="0" name="sex">
                                         </div>
-                                        <ul>
+                                        <ul id="sex">
                                             <li>
                                                 <div>male</div>
                                                 <span>0</span>
@@ -54,10 +62,13 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
+                                    <label class="font-white font-condensed" data-for="partner-sex">
+                                        Interesja mnie:
+                                    </label>
                                     <div class="select">
                                         <div class="select-label">
                                             <div>male</div>
-                                            <input type="hidden" value="0" name="partnerSex">
+                                            <input type="hidden" value="0" name="partnerSex" id="partner-sex">
                                         </div>
                                         <ul>
                                             <li>
@@ -78,16 +89,158 @@
                             </div>
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <select name="region" class="fit-width">
-                                        <option value="0">r1</option>
-                                        <option value="1">r2</option>
-                                    </select>
+                                    <label class="font-white font-condensed" data-for="region">
+                                        Twoje wojewodztwo:
+                                    </label>
+                                    <div class="select">
+                                        <div class="select-label">
+                                            <div>male</div>
+                                            <input type="hidden" value="0" name="region" id="region">
+                                        </div>
+                                        <ul>
+                                            <li>
+                                                <div>dolnośląskie</div>
+                                                <span>0</span>
+                                            </li>
+                                            <li>
+                                                <div>kujawsko-pomorskie</div>
+                                                <span>1</span>
+                                            </li>
+                                            <li>
+                                                <div>lubelskie</div>
+                                                <span>2</span>
+                                            </li>
+                                            <li>
+                                                <div>lubuskie</div>
+                                                <span>3</span>
+                                            </li>
+                                            <li>
+                                                <div>łódzkie</div>
+                                                <span>4</span>
+                                            </li>
+                                            <li>
+                                                <div>małopolskie</div>
+                                                <span>5</span>
+                                            </li>
+                                            <li>
+                                                <div>mazowieckie</div>
+                                                <span>6</span>
+                                            </li>
+                                            <li>
+                                                <div>opolskie</div>
+                                                <span>7</span>
+                                            </li>
+                                            <li>
+                                                <div>podkarpackie</div>
+                                                <span>8</span>
+                                            </li>
+                                            <li>
+                                                <div>podlaskie</div>
+                                                <span>9</span>
+                                            </li>
+                                            <li>
+                                                <div>pomorskie</div>
+                                                <span>10</span>
+                                            </li>
+                                            <li>
+                                                <div>śląskie</div>
+                                                <span>11</span>
+                                            </li>
+                                            <li>
+                                                <div>świętokrzyskie</div>
+                                                <span>12</span>
+                                            </li>
+                                            <li>
+                                                <div>warmińsko-mazurskie</div>
+                                                <span>13</span>
+                                            </li>
+                                            <li>
+                                                <div>wielkopolskie</div>
+                                                <span>14</span>
+                                            </li>
+                                            <li>
+                                                <div>zachodniopomorskie</div>
+                                                <span>15</span>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <select name="partnerRegion" class="fit-width">
-                                        <option value="0">r1</option>
-                                        <option value="1">r2</option>
-                                    </select>
+                                    <label class="font-white font-condensed" data-for="partner-region">
+                                        Wojewodztwo rozmowcy:
+                                    </label>
+                                    <div class="select">
+                                        <div class="select-label">
+                                            <div>male</div>
+                                            <input type="hidden" value="0" name="partnerRegion" id="partner-region">
+                                        </div>
+                                        <ul>
+                                            <li>
+                                                <div>dolnośląskie</div>
+                                                <span>0</span>
+                                            </li>
+                                            <li>
+                                                <div>kujawsko-pomorskie</div>
+                                                <span>1</span>
+                                            </li>
+                                            <li>
+                                                <div>lubelskie</div>
+                                                <span>2</span>
+                                            </li>
+                                            <li>
+                                                <div>lubuskie</div>
+                                                <span>3</span>
+                                            </li>
+                                            <li>
+                                                <div>łódzkie</div>
+                                                <span>4</span>
+                                            </li>
+                                            <li>
+                                                <div>małopolskie</div>
+                                                <span>5</span>
+                                            </li>
+                                            <li>
+                                                <div>mazowieckie</div>
+                                                <span>6</span>
+                                            </li>
+                                            <li>
+                                                <div>opolskie</div>
+                                                <span>7</span>
+                                            </li>
+                                            <li>
+                                                <div>podkarpackie</div>
+                                                <span>8</span>
+                                            </li>
+                                            <li>
+                                                <div>podlaskie</div>
+                                                <span>9</span>
+                                            </li>
+                                            <li>
+                                                <div>pomorskie</div>
+                                                <span>10</span>
+                                            </li>
+                                            <li>
+                                                <div>śląskie</div>
+                                                <span>11</span>
+                                            </li>
+                                            <li>
+                                                <div>świętokrzyskie</div>
+                                                <span>12</span>
+                                            </li>
+                                            <li>
+                                                <div>warmińsko-mazurskie</div>
+                                                <span>13</span>
+                                            </li>
+                                            <li>
+                                                <div>wielkopolskie</div>
+                                                <span>14</span>
+                                            </li>
+                                            <li>
+                                                <div>zachodniopomorskie</div>
+                                                <span>15</span>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
