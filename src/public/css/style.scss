@@ -18,7 +18,6 @@ body {
 
 #main-nav, #main-footer {
   height: 80px;
-  font: 300 14px 'Open Sans Condensed', sans-serif;
   background: #000;
   width: 100%;
 }
@@ -30,6 +29,8 @@ body {
   position: absolute;
   bottom: 0;
   border-top: 2px $yellow solid;
+  z-index: -1;
+  font: 300 14px 'Open Sans Condensed', sans-serif;
 }
 main {
   height: calc(100vh - 160px);
