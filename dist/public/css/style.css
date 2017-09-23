@@ -6338,7 +6338,7 @@ main {
       margin-bottom: 15px; }
 
 #chat {
-  height: calc(100vh - 80px - 37px);
+  height: calc(100vh - 80px - 37px - 15px);
   overflow-y: auto;
   margin: 0 auto;
   padding: 20px 50px;
@@ -6370,7 +6370,16 @@ main {
       width: 100%; }
 
 #chat-controls {
-  margin: 0 !important; }
+  margin: 0 !important;
+  padding: 0 0 15px;
+  position: relative; }
+  #chat-controls:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    height: 10px;
+    width: 100%;
+    background: linear-gradient(to top, #323232, transparent); }
   #chat-controls div[class^="col-"] {
     padding: 0; }
   #chat-controls #u {
