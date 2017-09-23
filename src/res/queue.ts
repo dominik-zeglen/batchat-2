@@ -94,7 +94,6 @@ export class Queue {
         this.clients.forEach((s, i) => {
             s.forEach((r, j) => {
                 this.clients[i][j] = r.filter(c => {
-                    console.log(_.includes(u, c.getClient().uuid));
                     return !_.includes(u, c.getClient().uuid);
                 });
             });

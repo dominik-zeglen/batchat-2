@@ -80,7 +80,6 @@ var Queue = /** @class */ (function () {
         this.clients.forEach(function (s, i) {
             s.forEach(function (r, j) {
                 _this.clients[i][j] = r.filter(function (c) {
-                    console.log(_.includes(u, c.getClient().uuid));
                     return !_.includes(u, c.getClient().uuid);
                 });
             });
