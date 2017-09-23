@@ -9,7 +9,8 @@ export function emojizer(msg) {
             ';(': '😢',
             'xD': '😂',
             'XD': '😂',
-            'xd': '😂'
+            'xd': '😂',
+            '<3': '❤'
         };
 
         Object.keys(e).forEach(r => {

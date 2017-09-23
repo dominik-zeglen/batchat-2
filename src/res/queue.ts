@@ -120,7 +120,7 @@ export class Queue {
                                 p.getPreferences().partnerSex == 2 ? true : p.getPreferences().partnerSex == c.getClient().sex &&
                                 p.getClient().uuid != c.getClient().uuid) {
                                 if(p.getClient().uuid != c.getClient().uuid) {
-                                    ret.push([c.getClient(), p.getClient()]);\
+                                    ret.push([c.getClient(), p.getClient()]);
                                     this.removeClients([c.getClient().uuid, p.getClient().uuid]);
                                 }
                             } else {
