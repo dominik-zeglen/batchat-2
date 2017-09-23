@@ -23,7 +23,7 @@ var QueuedClient = /** @class */ (function () {
 }());
 var Queue = /** @class */ (function () {
     function Queue(t) {
-        if (t === void 0) { t = 5; }
+        if (t === void 0) { t = 10; }
         this.clients = [];
         for (var i = 0; i < 2; i++) {
             this.clients.push([]);
@@ -68,6 +68,7 @@ var Queue = /** @class */ (function () {
                 r.forEach(function (c, k) {
                     if (c.getClient().uuid == u) {
                         _this.clients[i][j].splice(k, 1);
+                        return _this;
                     }
                 });
             });
@@ -78,10 +79,9 @@ var Queue = /** @class */ (function () {
         var _this = this;
         this.clients.forEach(function (s, i) {
             s.forEach(function (r, j) {
-                r.forEach(function (c, k) {
-                    if (_.includes(u, c.getClient().uuid)) {
-                        _this.clients[i][j].splice(k, 1);
-                    }
+                _this.clients[i][j] = r.filter(function (c) {
+                    console.log(_.includes(u, c.getClient().uuid));
+                    return !_.includes(u, c.getClient().uuid);
                 });
             });
         });
@@ -99,15 +99,15 @@ var Queue = /** @class */ (function () {
         this.clients.forEach(function (s, i) {
             s.forEach(function (r, j) {
                 r.forEach(function (c, k) {
-                    (c.getPreferences().sex == 2 ? [0, 1] : [c.getPreferences().partnerSex]).forEach(function (partner_sex) {
+                    (c.getPreferences().partnerSex == 2 ? [0, 1] : [c.getPreferences().partnerSex]).forEach(function (partner_sex) {
+                        // console.log(this.clients[partner_sex][c.getPreferences().partnerRegion]);
                         _this.clients[partner_sex][c.getPreferences().partnerRegion].forEach(function (p) {
                             if (p.getPreferences().partnerRegion == c.getClient().region &&
-                                p.getPreferences().partnerSex == c.getClient().sex &&
+                                p.getPreferences().partnerSex == 2 ? true : p.getPreferences().partnerSex == c.getClient().sex &&
                                 p.getClient().uuid != c.getClient().uuid) {
                                 if (p.getClient().uuid != c.getClient().uuid) {
                                     ret.push([c.getClient(), p.getClient()]);
-                                    _this.removeClient(c.getClient().uuid);
-                                    _this.removeClient(p.getClient().uuid);
+                                    _this.removeClients([c.getClient().uuid, p.getClient().uuid]);
                                 }
                             }
                             else {
@@ -123,6 +123,11 @@ var Queue = /** @class */ (function () {
         }), 2).filter(function (c) {
             return c.length == 2;
         });
+        if (ret2.length) {
+            this.removeClients(ret2.map(function (c) {
+                return c.uuid;
+            }));
+        }
         return ret.concat(ret2);
     };
     return Queue;
