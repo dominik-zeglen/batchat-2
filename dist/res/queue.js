@@ -99,19 +99,20 @@ var Queue = /** @class */ (function () {
             s.forEach(function (r, j) {
                 r.forEach(function (c, k) {
                     (c.getPreferences().partnerSex == 2 ? [0, 1] : [c.getPreferences().partnerSex]).forEach(function (partner_sex) {
-                        // console.log(this.clients[partner_sex][c.getPreferences().partnerRegion]);
-                        _this.clients[partner_sex][c.getPreferences().partnerRegion].forEach(function (p) {
-                            if (p.getPreferences().partnerRegion == c.getClient().region &&
-                                p.getPreferences().partnerSex == 2 ? true : p.getPreferences().partnerSex == c.getClient().sex &&
-                                p.getClient().uuid != c.getClient().uuid) {
-                                if (p.getClient().uuid != c.getClient().uuid) {
-                                    ret.push([c.getClient(), p.getClient()]);
-                                    _this.removeClients([c.getClient().uuid, p.getClient().uuid]);
+                        (c.getPreferences().partnerRegion == 16 ? _.range(0, 16) : [c.getPreferences().partnerRegion]).forEach(function (partner_region) {
+                            _this.clients[partner_sex][partner_region].forEach(function (p) {
+                                if (p.getPreferences().partnerRegion == 16 ? true : p.getPreferences().partnerRegion == c.getClient().region &&
+                                    p.getPreferences().partnerSex == 2 ? true : p.getPreferences().partnerSex == c.getClient().sex &&
+                                    p.getClient().uuid != c.getClient().uuid) {
+                                    if (p.getClient().uuid != c.getClient().uuid) {
+                                        ret.push([c.getClient(), p.getClient()]);
+                                        _this.removeClients([c.getClient().uuid, p.getClient().uuid]);
+                                    }
                                 }
-                            }
-                            else {
-                                p.tick();
-                            }
+                                else {
+                                    p.tick();
+                                }
+                            });
                         });
                     });
                 });

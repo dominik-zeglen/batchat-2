@@ -1,4 +1,4 @@
-    import {h, createProjector} from 'maquette';
+import {h, createProjector} from 'maquette';
 import {emojizer} from '../emojizer';
 
 interface Message {

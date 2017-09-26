@@ -14,12 +14,12 @@
 <main>
     <div class="container">
         <div class="row fit-height">
-            <div class="col-md-2 text-center">
+            <div class="col-xl-2 text-center d-none d-xl-block">
                 <img data-src="https://lh4.ggpht.com/ike-jviZQ32RHuhkwLcAt_9vdpBX1oWKU00NX7QRe5GPl7-5sapzZ0u91_ssg_-Ednak2Hj-Hg=w162">
             </div>
-            <div class="col-md-8 background-lightgray fit-height">
+            <div class="col-xl-8 background-lightgray fit-height">
                 <div class="row fit-height">
-                    <div class="col-sm-6 splitter-left">
+                    <div class="col-md-6 splitter-left fit-md-height">
                         <div class="center-vertical font-light font-white">
                             <h1>Pogadaj se</h1>
                             <div>
@@ -37,50 +37,50 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-6 splitter-right">
+                    <div class="col-md-6 splitter-right fit-md-height">
                         <form method="POST" action="/chat" class="d-block center-vertical">
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-lg-6 col-md-12 col-sm-6">
                                     <label class="font-white font-condensed" data-for="sex">
                                         Twoja plec:
                                     </label>
                                     <div class="select">
                                         <div class="select-label">
-                                            <div>male</div>
+                                            <div>mezczyzna</div>
                                             <input type="hidden" value="0" name="sex">
                                         </div>
                                         <ul id="sex">
                                             <li>
-                                                <div>male</div>
+                                                <div>mezczyzna</div>
                                                 <span>0</span>
                                             </li>
                                             <li>
-                                                <div>female</div>
+                                                <div>kobieta</div>
                                                 <span>1</span>
                                             </li>
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-lg-6 col-md-12 col-sm-6">
                                     <label class="font-white font-condensed" data-for="partner-sex">
-                                        Interesja mnie:
+                                        Interesuje mnie:
                                     </label>
                                     <div class="select" id="partner-sex">
                                         <div class="select-label">
-                                            <div>male</div>
+                                            <div>bez znaczenia</div>
                                             <input type="hidden" value="2" name="partnerSex">
                                         </div>
                                         <ul>
                                             <li>
-                                                <div>male</div>
+                                                <div>mezczyzna</div>
                                                 <span>0</span>
                                             </li>
                                             <li>
-                                                <div>female</div>
+                                                <div>kobieta</div>
                                                 <span>1</span>
                                             </li>
                                             <li>
-                                                <div>no matter lol</div>
+                                                <div>bez znaczenia</div>
                                                 <span>2</span>
                                             </li>
                                         </ul>
@@ -88,13 +88,13 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-lg-6 col-md-12 col-sm-6">
                                     <label class="font-white font-condensed" data-for="region">
                                         Twoje wojewodztwo:
                                     </label>
                                     <div class="select">
                                         <div class="select-label">
-                                            <div>male</div>
+                                            <div>dolnośląskie</div>
                                             <input type="hidden" value="0" name="region" id="region">
                                         </div>
                                         <ul>
@@ -165,14 +165,14 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-lg-6 col-md-12 col-sm-6">
                                     <label class="font-white font-condensed" data-for="partner-region">
                                         Wojewodztwo rozmowcy:
                                     </label>
                                     <div class="select">
                                         <div class="select-label">
-                                            <div>male</div>
-                                            <input type="hidden" value="0" name="partnerRegion" id="partner-region">
+                                            <div>bez znaczenia</div>
+                                            <input type="hidden" value="16" name="partnerRegion" id="partner-region">
                                         </div>
                                         <ul>
                                             <li>
@@ -239,6 +239,10 @@
                                                 <div>zachodniopomorskie</div>
                                                 <span>15</span>
                                             </li>
+                                            <li>
+                                                <div>bez znaczenia</div>
+                                                <span>16</span>
+                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -252,13 +256,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 text-center">
+            <div class="col-xl-2 text-center d-none d-xl-block">
                 <img data-src="https://lh4.ggpht.com/ike-jviZQ32RHuhkwLcAt_9vdpBX1oWKU00NX7QRe5GPl7-5sapzZ0u91_ssg_-Ednak2Hj-Hg=w162">
             </div>
         </div>
     </div>
 </main>
-<nav id="main-footer"></nav>
+<footer id="main-footer"></footer>
 
 </body>
 </html>

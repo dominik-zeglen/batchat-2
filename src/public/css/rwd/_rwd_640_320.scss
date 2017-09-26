@@ -1,13 +1,26 @@
 @media all and (max-width: 768px) {
+  html, body {
+    height: 100vh;
+    overflow: hidden;
+  }
+  #main-nav {
+    height: 60px;
+  }
   #chat {
     padding: 15px;
-    height: calc(100vh - 80px - 90px);
+    height: calc(100vh - 60px - 90px);
   }
   #chat-controls {
     margin: 0 -15px !important;
+    padding: 0;
 
     button, input {
       height: 45px;
+    }
+  }
+  main {
+    .container {
+      height: 100%;
     }
   }
 }

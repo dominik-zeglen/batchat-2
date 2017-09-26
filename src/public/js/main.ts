@@ -110,7 +110,7 @@ $(() => {
     $('.select').each((i, t) => {
         (<any>$(t)).StaticSelect();
         if(isNumber($(t).css('z-index'))) {
-            $(t).css('z-index', (parseInt($(t).css('z-index')) + i));
+            $(t).css('z-index', (parseInt(<string>$(t).css('z-index')) + i));
         } else {
             $(t).css('z-index', 100 - i);
         }

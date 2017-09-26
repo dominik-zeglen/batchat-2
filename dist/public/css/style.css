@@ -6224,21 +6224,67 @@ h1 {
 .background-lightgray {
   background: #4B4B4B; }
 
+@media all and (min-width: 576px) {
+  .fit-sm-width {
+    width: 100%; }
+  .fit-sm-height {
+    height: 100%; } }
+
+@media all and (max-width: 576px) {
+  .fit-sm-down-width {
+    width: 100%; }
+  .fit-sm-down-height {
+    height: 100%; } }
+
+@media all and (min-width: 768px) {
+  .fit-md-width {
+    width: 100%; }
+  .fit-md-height {
+    height: 100%; } }
+
+@media all and (max-width: 768px) {
+  .fit-md-down-width {
+    width: 100%; }
+  .fit-md-down-height {
+    height: 100%; } }
+
+@media all and (min-width: 992px) {
+  .fit-lg-width {
+    width: 100%; }
+  .fit-lg-height {
+    height: 100%; } }
+
+@media all and (max-width: 992px) {
+  .fit-lg-down-width {
+    width: 100%; }
+  .fit-lg-down-height {
+    height: 100%; } }
+
+@media all and (min-width: 1200px) {
+  .fit-xl-width {
+    width: 100%; }
+  .fit-xl-height {
+    height: 100%; } }
+
+@media all and (max-width: 1200px) {
+  .fit-xl-down-width {
+    width: 100%; }
+  .fit-xl-down-height {
+    height: 100%; } }
+
 .fit-width {
   width: 100%; }
 
 .fit-height {
   height: 100%; }
 
-.splitter-left, .splitter-right {
-  height: 100%; }
-  .splitter-left:before, .splitter-right:before {
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 1px;
-    top: 0;
-    background: linear-gradient(to top, transparent 20%, #FEEF07 50%, transparent 80%); }
+.splitter-left:before, .splitter-right:before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  top: 0;
+  background: linear-gradient(to top, transparent 20%, #FEEF07 50%, transparent 80%); }
 
 .splitter-left:before {
   right: 0; }
@@ -6387,10 +6433,18 @@ main {
     display: none; }
 
 @media all and (max-width: 768px) {
+  html, body {
+    height: 100vh;
+    overflow: hidden; }
+  #main-nav {
+    height: 60px; }
   #chat {
     padding: 15px;
-    height: calc(100vh - 80px - 90px); }
+    height: calc(100vh - 60px - 90px); }
   #chat-controls {
-    margin: 0 -15px !important; }
+    margin: 0 -15px !important;
+    padding: 0; }
     #chat-controls button, #chat-controls input {
-      height: 45px; } }
+      height: 45px; }
+  main .container {
+    height: 100%; } }

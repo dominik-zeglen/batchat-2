@@ -1,3 +1,8 @@
+$xl: 1200px;
+$lg: 992px;
+$md: 768px;
+$sm: 576px;
+
 .left {
   float: left;
 }
@@ -26,6 +31,24 @@
 }
 
 .fit {
+  @each $bn, $bv in ('sm', $sm), ('md', $md), ('lg', $lg), ('xl', $xl) {
+    @media all and (min-width: #{$bv}) {
+      &-#{$bn}-width {
+        width: 100%;
+      }
+      &-#{$bn}-height {
+        height: 100%;
+      }
+    }
+    @media all and (max-width: #{$bv}) {
+      &-#{$bn}-down-width {
+        width: 100%;
+      }
+      &-#{$bn}-down-height {
+        height: 100%;
+      }
+    }
+  }
   &-width {
     width: 100%;
   }
@@ -36,8 +59,6 @@
 
 .splitter {
   &-left, &-right {
-    height: 100%;
-
     &:before {
       content: '';
       position: absolute;
