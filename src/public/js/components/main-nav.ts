@@ -12,17 +12,19 @@ export class MainNav {
     }
 
     render() {
-        return h('div.container.center-vertical', [
-            h('div.row', [
-                h('div.col-sm-2', [
-                    h('div.logo', [
-                        h('img', {
-                            'data-src': '/public/img/logo.png'
+        return h('div.container.center-vertical.fit-sm-down-height.p-2.p-md-0', [
+            h('div.row.fit-height', [
+                h('div.col-2', [
+                    h('div.logo.fit-height', [
+                        h('img.fit-height.center-vertical', {
+                            'data-src': '/public/images/logo.png'
                         })
                     ])
                 ]),
-                h('div.col-sm-8'),
-                h('div.col-sm-2.text-right', ['Aktywni uzytkownicy: ' + this.users])
+                h('div.col-5'),
+                h('div.col-5.text-right', [
+                    h('div.center-vertical', 'Aktywni uzytkownicy: ' + this.users)
+                ])
             ])
         ]);
     }
