@@ -3,7 +3,6 @@ import * as $ from 'jquery';
 import * as cookie from 'js-cookie';
 import {Chat} from './components/chat';
 import {MainNav} from './components/main-nav';
-import {MainFooter} from './components/main-footer';
 import {StaticSelect} from "./components/static-select";
 import {isNumber} from "util";
 

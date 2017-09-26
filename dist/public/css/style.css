@@ -6190,7 +6190,8 @@ a.text-dark:focus, a.text-dark:hover {
     color: #272727;
     background: #FEEF07; }
     .btn.btn-primary:hover, #chat-controls button:hover {
-      background: #272727; }
+      background: #272727;
+      color: #fff; }
 
 .form-control, #chat-controls #v {
   border: none;
