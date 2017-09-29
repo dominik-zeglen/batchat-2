@@ -31,6 +31,23 @@ body {
   border-top: 2px $yellow solid;
   z-index: -1;
   font: 300 14px 'Open Sans Condensed', sans-serif;
+
+  .footer-item {
+    height: 100%;
+
+    a {
+      display: block;
+      color: $lightgray;
+      font: 300 14px 'Raleway', sans-serif;
+      transition: 300ms;
+      @extend .center-vertical;
+
+      &:hover {
+        text-decoration: none;
+        color: #fff;
+      }
+    }
+  }
 }
 main {
   height: calc(100vh - 160px);

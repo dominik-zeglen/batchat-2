@@ -6211,7 +6211,7 @@ h1 {
 .right {
   float: right; }
 
-.center-vertical, main .container {
+.center-vertical, #main-footer .footer-item a, main .container {
   position: relative;
   top: 50%;
   transform: translateY(-50%); }
@@ -6376,6 +6376,16 @@ body {
   border-top: 2px #FEEF07 solid;
   z-index: -1;
   font: 300 14px 'Open Sans Condensed', sans-serif; }
+  #main-footer .footer-item {
+    height: 100%; }
+    #main-footer .footer-item a {
+      display: block;
+      color: #4B4B4B;
+      font: 300 14px 'Raleway', sans-serif;
+      transition: 300ms; }
+      #main-footer .footer-item a:hover {
+        text-decoration: none;
+        color: #fff; }
 
 main {
   height: calc(100vh - 160px);
