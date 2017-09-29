@@ -112,8 +112,8 @@ export class Queue {
         this.clients.forEach((s, i) => {
             s.forEach((r, j) => {
                 r.forEach((c, k) => {
-                    (c.getPreferences().partnerSex == 2 ? [0, 1] : [c.getPreferences().partnerSex]).forEach(partner_sex => {
-                        (c.getPreferences().partnerRegion == 16 ? <Array<number>>_.range(0, 16) : [c.getPreferences().partnerRegion]).forEach(partner_region => {
+                    (([0, 1]).indexOf(c.getPreferences().partnerSex) == -1 ? [0, 1] : [c.getPreferences().partnerSex]).forEach(partner_sex => {
+                        ((<Array<number>>_.range(0, 16)).indexOf(c.getPreferences().partnerRegion) == -1 ? <Array<number>>_.range(0, 16) : [c.getPreferences().partnerRegion]).forEach(partner_region => {
                             this.clients[partner_sex][partner_region].forEach(p => {
                                 if (p.getPreferences().partnerRegion == 16 ? true : p.getPreferences().partnerRegion == c.getClient().region &&
                                     p.getPreferences().partnerSex == 2 ? true : p.getPreferences().partnerSex == c.getClient().sex &&

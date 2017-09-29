@@ -18,9 +18,8 @@ export module StaticSelect {
 
         OnLabelClick(e) {
             let ul = this.element.find('ul');
-            let label = $(e.currentTarget);
 
-            if(ul.attr('aria-expanded') == 'true') {
+            if(<String>ul.attr('aria-expanded') == 'true') {
                 StatSelect.SlideUp(ul);
             } else {
                 StatSelect.SlideDown(ul);
@@ -33,7 +32,7 @@ export module StaticSelect {
             let t = $(e.currentTarget);
 
             label.find('div').text(t.find('div').text());
-            label.find('input').val(t.find('span').val());
+            label.find('input').val(t.find('span').text());
             StatSelect.SlideUp(ul);
         }
 
