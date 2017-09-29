@@ -57,7 +57,7 @@ export class Server {
         this.app.use('/public/', express.static('./public'));
         this.app.get('/', (req: express.Request, res: express.Response) => {
             fs.readFile('./views/index.html', (e, f) => {
-                res.send(f.toString().replace('%rooms%', JSON.stringify(this.rooms)));
+                res.send(f.toString());
             });
         });
         this.app.post('/chat', (req: express.Request, res: express.Response) => {

@@ -47,7 +47,7 @@ var Server = /** @class */ (function () {
         this.app.use('/public/', express.static('./public'));
         this.app.get('/', function (req, res) {
             fs.readFile('./views/index.html', function (e, f) {
-                res.send(f.toString().replace('%rooms%', JSON.stringify(_this.rooms)));
+                res.send(f.toString());
             });
         });
         this.app.post('/chat', function (req, res) {
