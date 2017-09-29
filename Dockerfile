@@ -69,6 +69,6 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar \
 EXPOSE 8000
 
 ADD . ./www/
-WORKDIR /www/
+WORKDIR /www/dist/
 
-CMD [ "node", "./dist/app.js" ]
+CMD [ "node", "app.js" ]
