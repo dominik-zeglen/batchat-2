@@ -70,5 +70,6 @@ EXPOSE 8000
 
 ADD . ./www/
 WORKDIR /www/dist/
+RUN npm install
 
 CMD [ "node", "app.js" ]
