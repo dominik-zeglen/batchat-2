@@ -64,43 +64,45 @@ main {
 }
 
 #chat {
-  height: calc(100vh - 80px - 37px - 15px);
-  overflow-y: auto;
-  margin: 0 auto;
-  padding: 20px 50px;
-  background: $lightgray;
-  &::-webkit-scrollbar {
-    display: none;
-  }
+  & > div {
+    height: calc(100vh - 80px - 37px - 15px);
+    overflow-y: auto;
+    margin: 0 auto;
+    padding: 20px 50px;
+    background: $lightgray;
+    &::-webkit-scrollbar {
+      display: none;
+    }
 
-  .message {
-    margin-bottom: 10px;
-    overflow: hidden;
+    .message {
+      margin-bottom: 10px;
+      overflow: hidden;
 
-    & > * {
-      padding: 5px 10px;
-      border-radius: 2px;
-      max-width: 450px;
-      word-break: break-all;
-    }
-    .server {
-      color: #fff;
-      font-size: .8rem;
-      text-align: center;
-      padding: 0;
-      margin: auto;
-    }
-    .me {
-      background: #adf;
-      float: left;
-    }
-    .partner {
-      background: #e5f59a;
-      float: right;
-    }
-    img {
-      object-fit: contain;
-      width: 100%;
+      & > * {
+        padding: 5px 10px;
+        border-radius: 2px;
+        max-width: 450px;
+        word-break: break-all;
+      }
+      .server {
+        color: #fff;
+        font-size: .8rem;
+        text-align: center;
+        padding: 0;
+        margin: auto;
+      }
+      .me {
+        background: #adf;
+        float: left;
+      }
+      .partner {
+        background: #e5f59a;
+        float: right;
+      }
+      img {
+        object-fit: contain;
+        width: 100%;
+      }
     }
   }
 }
@@ -133,6 +135,11 @@ main {
     @extend .btn;
     @extend .btn-primary;
   }
+}
+
+#loader {
+  font-size: 90px;
+  color: $yellow;
 }
 
 @import 'rwd/rwd_640_320';

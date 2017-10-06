@@ -6395,35 +6395,35 @@ main {
     main .container .select {
       margin-bottom: 15px; }
 
-#chat {
+#chat > div {
   height: calc(100vh - 80px - 37px - 15px);
   overflow-y: auto;
   margin: 0 auto;
   padding: 20px 50px;
   background: #4B4B4B; }
-  #chat::-webkit-scrollbar {
+  #chat > div::-webkit-scrollbar {
     display: none; }
-  #chat .message {
+  #chat > div .message {
     margin-bottom: 10px;
     overflow: hidden; }
-    #chat .message > * {
+    #chat > div .message > * {
       padding: 5px 10px;
       border-radius: 2px;
       max-width: 450px;
       word-break: break-all; }
-    #chat .message .server {
+    #chat > div .message .server {
       color: #fff;
       font-size: .8rem;
       text-align: center;
       padding: 0;
       margin: auto; }
-    #chat .message .me {
+    #chat > div .message .me {
       background: #adf;
       float: left; }
-    #chat .message .partner {
+    #chat > div .message .partner {
       background: #e5f59a;
       float: right; }
-    #chat .message img {
+    #chat > div .message img {
       object-fit: contain;
       width: 100%; }
 
@@ -6442,6 +6442,10 @@ main {
     padding: 0; }
   #chat-controls #u {
     display: none; }
+
+#loader {
+  font-size: 90px;
+  color: #FEEF07; }
 
 @media all and (max-width: 768px) {
   html, body {

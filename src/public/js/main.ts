@@ -78,8 +78,13 @@ $(() => {
                         });
                         setTimeout(() => {
                             socket.emit('addToQueue');
+                            chat.setLoadingState(true);
+                            chat.messages = [];
                         }, 3000);
                     } else {
+                        if(msg.content == 'found partner') {
+                            chat.setLoadingState(false);
+                        }
                         chat.addMessage(msg);
                     }
                 } else {
