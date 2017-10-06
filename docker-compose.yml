@@ -1,0 +1,9 @@
+version: '3'
+services:
+  web:
+    image: batchat
+    ports:
+      - "8000:8000"
+    deploy:
+      restart_policy:
+        condition: on-failure
