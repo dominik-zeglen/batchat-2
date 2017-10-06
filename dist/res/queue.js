@@ -19,6 +19,23 @@ var QueuedClient = /** @class */ (function () {
     QueuedClient.prototype.getClient = function () {
         return this.client;
     };
+    QueuedClient.prototype.match = function (p) {
+        var matchSex = false;
+        var matchRegion = false;
+        if (this.getPreferences().partnerSex == 2) {
+            matchSex = true;
+        }
+        else {
+            matchSex = (this.getPreferences().partnerSex == p.getPreferences().sex);
+        }
+        if (this.getPreferences().partnerRegion == 16) {
+            matchRegion = true;
+        }
+        else {
+            matchRegion = (this.getPreferences().partnerRegion == p.getPreferences().region);
+        }
+        return matchSex && matchRegion;
+    };
     return QueuedClient;
 }());
 var Queue = /** @class */ (function () {
@@ -98,19 +115,16 @@ var Queue = /** @class */ (function () {
         this.clients.forEach(function (s, i) {
             s.forEach(function (r, j) {
                 r.forEach(function (c, k) {
+                    c.tick();
                     (([0, 1]).indexOf(c.getPreferences().partnerSex) == -1 ? [0, 1] : [c.getPreferences().partnerSex]).forEach(function (partner_sex) {
                         (_.range(0, 16).indexOf(c.getPreferences().partnerRegion) == -1 ? _.range(0, 16) : [c.getPreferences().partnerRegion]).forEach(function (partner_region) {
                             _this.clients[partner_sex][partner_region].forEach(function (p) {
-                                if (p.getPreferences().partnerRegion == 16 ? true : p.getPreferences().partnerRegion == c.getClient().region &&
-                                    p.getPreferences().partnerSex == 2 ? true : p.getPreferences().partnerSex == c.getClient().sex &&
+                                if (p.match(c) &&
                                     p.getClient().uuid != c.getClient().uuid) {
                                     if (p.getClient().uuid != c.getClient().uuid) {
                                         ret.push([c.getClient(), p.getClient()]);
                                         _this.removeClients([c.getClient().uuid, p.getClient().uuid]);
                                     }
-                                }
-                                else {
-                                    p.tick();
                                 }
                             });
                         });

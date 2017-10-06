@@ -26,6 +26,24 @@ class QueuedClient {
     getClient() {
         return this.client;
     }
+
+    match(p: QueuedClient) {
+        let matchSex = false;
+        let matchRegion = false;
+        if (this.getPreferences().partnerSex == 2) {
+            matchSex = true;
+        } else {
+            matchSex = (this.getPreferences().partnerSex == p.getPreferences().sex);
+        }
+
+        if (this.getPreferences().partnerRegion == 16) {
+            matchRegion = true;
+        } else {
+            matchRegion = (this.getPreferences().partnerRegion == p.getPreferences().region);
+        }
+
+        return matchSex && matchRegion;
+    }
 }
 
 export class Queue {
@@ -112,18 +130,16 @@ export class Queue {
         this.clients.forEach((s, i) => {
             s.forEach((r, j) => {
                 r.forEach((c, k) => {
+                    c.tick();
                     (([0, 1]).indexOf(c.getPreferences().partnerSex) == -1 ? [0, 1] : [c.getPreferences().partnerSex]).forEach(partner_sex => {
                         ((<Array<number>>_.range(0, 16)).indexOf(c.getPreferences().partnerRegion) == -1 ? <Array<number>>_.range(0, 16) : [c.getPreferences().partnerRegion]).forEach(partner_region => {
                             this.clients[partner_sex][partner_region].forEach(p => {
-                                if (p.getPreferences().partnerRegion == 16 ? true : p.getPreferences().partnerRegion == c.getClient().region &&
-                                    p.getPreferences().partnerSex == 2 ? true : p.getPreferences().partnerSex == c.getClient().sex &&
+                                if (p.match(c) &&
                                         p.getClient().uuid != c.getClient().uuid) {
-                                    if(p.getClient().uuid != c.getClient().uuid) {
+                                    if (p.getClient().uuid != c.getClient().uuid) {
                                         ret.push([c.getClient(), p.getClient()]);
                                         this.removeClients([c.getClient().uuid, p.getClient().uuid]);
                                     }
-                                } else {
-                                    p.tick();
                                 }
                             });
                         });
@@ -136,7 +152,7 @@ export class Queue {
         }), 2).filter(c => {
             return c.length == 2;
         });
-        if(ret2.length) {
+        if (ret2.length) {
             this.removeClients(ret2.map(c => {
                 return (<any>c).uuid;
             }));

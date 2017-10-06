@@ -9,21 +9,17 @@ export interface ClientPreferences {
 }
 
 function matchDefault(a) :ClientPreferences {
-    if(!([0, 1]).indexOf(a.sex)) {
+    if(!([0, 1]).indexOf(a.sex) || !a.sex) {
         a.sex = 0;
-        console.log('Sex out of range');
     }
-    if(!([0, 1, 2]).indexOf(a.parterSex)) {
+    if(!([0, 1, 2]).indexOf(a.parterSex) || !a.partnerSex) {
         a.parterSex = 2;
-        console.log('Partner\'s sex out of range');
     }
-    if(a.region < 0 && a.region > 15) {
+    if((a.region < 0 && a.region > 15) || !a.region) {
         a.region = 0;
-        console.log('Region out of range');
     }
-    if(a.partnerRegion < 0 && a.parterRegion > 16) {
-        a.region = 0;
-        console.log('Partner\'s region out of range');
+    if((a.partnerRegion < 0 && a.partnerRegion > 16) || !a.partnerRegion) {
+        a.partnerRegion = 16;
     }
 
     Object.keys(a).forEach(k => {
@@ -41,7 +37,7 @@ export class Client {
     socket :Socket;
 
     constructor(sock, prefs) {
-        prefs = matchDefault(prefs);
+        prefs = matchDefault(prefs || {});
         this.uuid = uuid.v1();
         this.socket = sock;
         this.prefs = prefs;

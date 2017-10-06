@@ -27,7 +27,10 @@ export class Server {
         this.settings = [];
         this.settings['port'] = port;
         this.rooms = new RoomManager();
-        this.socket = io(this.http);
+        this.socket = io(this.http, {
+            pingInterval: 2000,
+            pingTimeout: 5000
+        });
         this.queue = new Queue();
         this.clientCounter = 0;
     }
@@ -35,6 +38,9 @@ export class Server {
     init(): Server {
         this.app.use(cookieParser());
         this.app.use(bodyParser());
+        this.socket.setMaxListeners(500);
+        this.socket.reconnection = false;
+        this.socket.timeout = 5;
         this.socket.on('connection', sock => {
             sock.on('join-queue', prefs => {
                 this.clientCounter += 1;

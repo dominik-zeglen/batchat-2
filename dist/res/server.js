@@ -18,7 +18,10 @@ var Server = /** @class */ (function () {
         this.settings = [];
         this.settings['port'] = port;
         this.rooms = new roommanager_1.RoomManager();
-        this.socket = io(this.http);
+        this.socket = io(this.http, {
+            pingInterval: 2000,
+            pingTimeout: 5000
+        });
         this.queue = new queue_1.Queue();
         this.clientCounter = 0;
     }
@@ -26,6 +29,9 @@ var Server = /** @class */ (function () {
         var _this = this;
         this.app.use(cookieParser());
         this.app.use(bodyParser());
+        this.socket.setMaxListeners(500);
+        this.socket.reconnection = false;
+        this.socket.timeout = 5;
         this.socket.on('connection', function (sock) {
             sock.on('join-queue', function (prefs) {
                 _this.clientCounter += 1;

@@ -9,6 +9,7 @@ export function printHellow(msg) {
     // this.socket.emit('e', 'hellow');
 }
 export function sendMessage(msg) {
+    msg = msg ? msg.toString() : '';
     if(msg.length) {
         this.socket.to(this.roomID).emit('e', {
             author: 'partner',

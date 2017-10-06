@@ -13,6 +13,7 @@ function printHellow(msg) {
 }
 exports.printHellow = printHellow;
 function sendMessage(msg) {
+    msg = msg ? msg.toString() : '';
     if (msg.length) {
         this.socket.to(this.roomID).emit('e', {
             author: 'partner',
